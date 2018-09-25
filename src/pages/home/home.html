@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+     Mi tienda
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-grid>
+ <ion-row *ngFor="let item of ps.productos">
+    <ion-col>
+      <img src="">
+      <p> {{item}}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
