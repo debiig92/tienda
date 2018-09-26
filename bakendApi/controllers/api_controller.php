@@ -13,7 +13,7 @@ class api_controller extends base_controller{
 
     public function cargarAllProducts(){
         $u = new Usuario();
-        $usuarios = $u->cargarAllProducts();
+        $usuarios = $u->cargarAllProducts($this->params[0]);
         if(!empty($usuarios) && $usuarios != 0){
             echo $this->responseJSON(array('status' => 'success', 'result' => $usuarios));
         } else {

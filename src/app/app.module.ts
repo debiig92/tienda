@@ -11,6 +11,7 @@ import { ProductosProvider } from '../providers/productos';
 import { UsuarioProvider } from '../providers/usuario';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     MyApp,

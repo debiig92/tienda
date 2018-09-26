@@ -12,17 +12,38 @@ export class ProductosProvider {
   }
 
   cargar_todos() {
-    let url = URL_SERVICIOS + 'cargarAllProducts';
 
-    //new Angular HttpClient service
-    this.http.get(url)
-      .subscribe(data => {   // data is already a JSON object
-          console.log(data);
-          this.productos.push(data["result"]);
-          this.pagina += 1;
+      let promesa = new Promise(  (resolve, reject)=>{
+
+        let url = URL_SERVICIOS + 'cargarAllProducts'+"/1";
+
+        //new Angular HttpClient service
+        this.http.get(url)
+          .subscribe(data => {   // data is already a JSON object
+              console.log(data);
+
+              let nuevaData = this.agrupar( data["result"], 2 );
+              this.productos = nuevaData;
+              this.pagina += 1;
+              console.log(data["result"]);
+              resolve();
+          });
 
       });
 
-      console.log(this.productos);
+      return promesa;
+
   }
+
+  private agrupar( arr:any, tamano:number ){
+
+    let nuevoArreglo = [];
+    for( let i = 0; i<arr.length; i+=tamano ){
+      nuevoArreglo.push( arr.slice(i, i+tamano) );
+    }
+    console.log( nuevoArreglo );
+    return nuevoArreglo;
+
+  }
+
 }

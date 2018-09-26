@@ -172,14 +172,15 @@ class Usuario
         return $result;
     }
 
-    public function cargarAllProducts()
+    public function cargarAllProducts($id)
     {
 
         $result = 0;
         try {
             $db = new DB();
-            $select = 'SELECT * FROM `productos` WHERE 1';
+            $select = 'SELECT * FROM `productos` WHERE `linea_id` = :linea';
             $stmt = $db->getConn()->prepare($select);
+			$stmt->bindParam(":linea", $id, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
